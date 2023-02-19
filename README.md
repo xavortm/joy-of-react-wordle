@@ -1,5 +1,7 @@
 # Word Game
 
+! I have created the project from 0 without reusing the course provided repository or looking at it's codebase. I have only followed the requirements. It is funny, that I came up with the same object structure to check if the letters are correct or not.
+
 ## Joy of React, Project I
 
 In this project, we'll recreate a popular online word game, Wordle:
