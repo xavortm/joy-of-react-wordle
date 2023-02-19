@@ -2,6 +2,10 @@
 
 ! I have created the project from 0 without reusing the course provided repository or looking at it's codebase. I have only followed the requirements. It is funny, that I came up with the same object structure to check if the letters are correct or not.
 
+## My solution:
+
+<img width="1366" alt="Screenshot 2023-02-19 at 10 50 16@2x" src="https://user-images.githubusercontent.com/2004664/219938256-6c1ac9ef-b741-4a79-b1a6-d8c8c7cca650.png">
+
 ## Joy of React, Project I
 
 In this project, we'll recreate a popular online word game, Wordle:
