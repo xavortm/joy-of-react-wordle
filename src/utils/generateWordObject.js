@@ -8,6 +8,10 @@
 function generateWordObject(currentWord, correctAnswer) {
   const lettersMap = []; // How many of each letter have been found
 
+  if (currentWord == undefined) {
+    return;
+  }
+
   // Generate the first map of letters:
   correctAnswer.split("").forEach((letter) => {
     lettersMap[letter] = (lettersMap[letter] || 0) + 1;

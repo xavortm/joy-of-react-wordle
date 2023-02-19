@@ -7,6 +7,7 @@ import initialGridState from "../utils/grid";
 const Row = styled.div`
   display: flex;
   gap: 0.5rem;
+  justify-content: center;
 `;
 
 const Grid = styled.div`
@@ -29,7 +30,13 @@ const Cell = styled.span`
   background: ${(props) => {
     if (props.highlight === "exists") return "#f9c642";
     if (props.highlight === "matches") return "#4aa564";
+    if (props.highlight === "notFound") return "#333";
     return "white";
+  }};
+
+  color: ${(props) => {
+    if (props.highlight === "notFound") return "#fff";
+    return "black";
   }};
 `;
 
@@ -42,7 +49,6 @@ const Cell = styled.span`
  */
 function WordleGraphic({ currentWord, wordsHistory }) {
   const grid = initialGridState;
-  const gridRow = grid[wordsHistory.length];
   grid.splice(0, wordsHistory.length, ...wordsHistory);
 
   // This is the current word being typed:
@@ -50,7 +56,7 @@ function WordleGraphic({ currentWord, wordsHistory }) {
     grid[wordsHistory.length] = currentWord.concat(
       Array(WORD_LENGTH - currentWord.length).fill({
         character: "",
-        status: "notFound",
+        status: "notTyped",
       })
     );
   }

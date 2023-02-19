@@ -2,16 +2,19 @@ import React from "react";
 import styled from "styled-components";
 
 import { WORD_LENGTH, GUESSES, WORDS } from "./consts/gameConsts";
-import Keyboard from "./components/Keyboard";
-import WordleInput from "./components/WordleInput";
-import WordleGraphic from "./components/WordleGraphic";
 import generateWordObject from "./utils/generateWordObject.js";
 
+import WordleGraphic from "./components/WordleGraphic";
+import WordleInput from "./components/WordleInput";
+import Keyboard from "./components/Keyboard";
+import Result from "./components/Result";
+
 const Window = styled.div`
-  max-width: 20rem;
+  max-width: 30rem;
   padding: 4rem;
   background: white;
   border-radius: 0.5rem;
+  text-align: center;
 
   & h1 {
     margin-top: 0;
@@ -64,13 +67,13 @@ function App() {
    * @returns {null} Nothing in particular :)
    */
   function onWordChange(event) {
-    const word = event.target.value;
+    const word = event.target.value.toLowerCase();
     if (word.length > WORD_LENGTH) {
       return;
     }
 
     const formattedWord = [...word].map((letter) => {
-      return { character: letter, status: "notFound" };
+      return { character: letter, status: "notTyped" };
     });
 
     setCurrentWord(formattedWord);
@@ -82,15 +85,17 @@ function App() {
 
       <WordleGraphic currentWord={currentWord} wordsHistory={wordsHistory} />
       <WordleInput
-        disabled={wordsHistory.length >= GUESSES}
+        disabled={wordsHistory.length >= GUESSES || correctAnswerFound}
         onSubmit={onSubmit}
         currentWord={currentWord}
         onWordChange={onWordChange}
       />
-      <Keyboard />
+      <Keyboard correctAnswer={correctAnswer} wordsHistory={wordsHistory} />
 
-      {correctAnswerFound && <h2>You have won!</h2>}
-      {!correctAnswerFound && wordsHistory.length === GUESSES && <h2>You have lost :(</h2>}
+      <Result
+        tries={wordsHistory.length}
+        correctAnswerFound={correctAnswerFound}
+      />
     </Window>
   );
 }

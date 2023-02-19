@@ -5,7 +5,7 @@ const initialGridState = [];
 
 count(0, GUESSES - 1).forEach(() => {
   initialGridState.push(
-    Array(WORD_LENGTH).fill({ character: "", status: "notFound" })
+    Array(WORD_LENGTH).fill({ character: "", status: "notTyped" })
   );
 });
 
